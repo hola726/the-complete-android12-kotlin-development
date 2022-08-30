@@ -27,5 +27,14 @@ fun main(){
     var lastCharInStr = myStr[myStr.length -1]
 
     myName = "Claudia"
-    print("Last Character " + lastCharInStr)
+    print("Last Character $lastCharInStr and the length of myStr is ${myStr.length}\n")
+
+    // Arithmetic operators
+    var result = 5+3
+    result *= 2
+    val a = 5.0
+    val b = 3
+    var resultDouble : Double
+    resultDouble = a / b
+    print(resultDouble)
 }
