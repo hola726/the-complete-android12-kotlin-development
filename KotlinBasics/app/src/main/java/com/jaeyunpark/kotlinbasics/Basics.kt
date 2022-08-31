@@ -36,5 +36,19 @@ fun main(){
     val b = 3
     var resultDouble : Double
     resultDouble = a / b
-    print(resultDouble)
+    println(resultDouble)
+
+    // Comparison operators
+    val isEqual = 5== 3
+    println("isEqual is $isEqual")
+
+    val isNotEqual = 5!=5
+    println("isNotEqual is $isNotEqual")
+
+    println("is5greater3 ${5>3}")
+    println("is5LowerEqual3 ${5 <= 3}")
+    println("in5GreaterEqual5 ${ 5 >= 5}")
+
+
+
 }
