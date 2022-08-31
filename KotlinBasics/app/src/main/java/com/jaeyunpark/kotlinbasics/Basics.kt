@@ -63,5 +63,27 @@ fun main(){
     println("myNum is ${++myNum}")
     println("myNum is ${--myNum}")
 
+    var heightPerson1 = 170
+    var heightPerson2 = 189
+
+    if(heightPerson1 > heightPerson2){
+        println("user raw force")
+    }else if(heightPerson1 == heightPerson2){
+        println("use you power technique 1337")
+    }else{
+        println("use technique")
+    }
+
+    val age = 17
+    if(age >= 21){
+        println("now you may drink in the US")
+    }else if(age >= 18){
+        println("you may vote now")
+    }else if(age >= 16){
+        println("you may drive now")
+    }else{
+        println("you're too young")
+    }
+
 
 }
