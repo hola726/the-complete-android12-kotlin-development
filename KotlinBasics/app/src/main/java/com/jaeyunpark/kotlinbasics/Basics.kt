@@ -49,6 +49,19 @@ fun main(){
     println("is5LowerEqual3 ${5 <= 3}")
     println("in5GreaterEqual5 ${ 5 >= 5}")
 
+    // Assignment operators
+    var myNum = 5
+    myNum += 3
+    println("myNum is $myNum")
+    myNum *=4
+    println("myNum is $myNum")
+
+    //Increment & Decrement operators
+    myNum++
+    println("myNum is $myNum")
+    println("myNum is ${myNum++}")
+    println("myNum is ${++myNum}")
+    println("myNum is ${--myNum}")
 
 
 }
