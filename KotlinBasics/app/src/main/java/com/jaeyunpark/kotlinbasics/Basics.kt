@@ -85,5 +85,16 @@ fun main(){
         println("you're too young")
     }
 
+    val name = "Denis"
+
+    if(name == "Denis"){
+        println("Welcome home denis")
+    }else{
+        println("Who are you?")
+    }
+    var isRainy = true
+    if(isRainy)
+        println("It's rainy")
+
 
 }
