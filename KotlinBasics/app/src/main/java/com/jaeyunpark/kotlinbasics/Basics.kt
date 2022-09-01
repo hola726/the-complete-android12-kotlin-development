@@ -143,5 +143,21 @@ fun main(){
         print("$conditionValue ")
         conditionValue -= 2
     }
+    println("")
+    x = 1
+    do{
+        print("$x ")
+        x++
+    }while(x <= 10)
+    println("\ndo while loop is done")
 
+    var feltTemp = "cold"
+    var roomTemp = 10
+    while(feltTemp =="cold"){
+        roomTemp++
+        if(roomTemp >= 20){
+            feltTemp = "comfy"
+            println("it's comfy now")
+        }
+    }
 }
