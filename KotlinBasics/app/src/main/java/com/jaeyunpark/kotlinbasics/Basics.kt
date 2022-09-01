@@ -131,4 +131,17 @@ fun main(){
         else -> println("$x is none of the above")
     }
 
+    var condition = 1
+    while(condition <= 10){
+        print("$condition ")
+        condition++
+    }
+    println("\nwhile loop is done")
+
+    var conditionValue = 100
+    while(conditionValue >= 0){
+        print("$conditionValue ")
+        conditionValue -= 2
+    }
+
 }
