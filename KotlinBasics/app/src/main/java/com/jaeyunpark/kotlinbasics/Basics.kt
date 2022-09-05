@@ -188,6 +188,23 @@ fun main(){
     myFunction()
     var addResult = avg(5.3,13.37)
     print("\nresult is $addResult")
+
+    var name2 :String= "Denis"
+    // name = null -> Compilation ERROR
+    var nullableName : String? = "Denis"
+//    nullableName = null
+
+    var len = name2.length
+    var len2 = nullableName?.length
+    nullableName?.let {println(it.length)}
+    /*
+    if(nullableName != null){
+        var len2 = nullableName.length
+
+    }else{
+        null
+    }
+     */
 }
 
 fun avg(a:Double, b:Double): Double{
