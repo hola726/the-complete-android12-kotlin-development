@@ -197,6 +197,11 @@ fun main(){
     var len = name2.length
     var len2 = nullableName?.length
     nullableName?.let {println(it.length)}
+    // ?: Elvis operator
+    val name3 = nullableName ?: "Guest"
+    println("name is $name3")
+
+    println(nullableName!!.toLowerCase())
     /*
     if(nullableName != null){
         var len2 = nullableName.length
