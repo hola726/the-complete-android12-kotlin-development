@@ -289,52 +289,97 @@ class Person(firstName: String = "John", lastName: String = "Doe"){
 //
 //}
 
-class Car(){
-    lateinit var owner: String
-
-    val myBrand: String = "BMW"
-        // Custom getter
-        get() {
-            return field.toLowerCase()
-        }
-
-    var maxSpeed :Int = 250
-//        get() = field
-        set(value) {
-            field = if(value > 0 ) value else throw IllegalArgumentException("Maxspeed cannot be less than 0")
-         }
-
-    var myModel : String = "M5"
-        private set
-
-    init {
-        this.myModel = "M3"
-        this.owner = "Frank"
-    }
-
-}
+//class Car(){
+//    lateinit var owner: String
+//
+//    val myBrand: String = "BMW"
+//        // Custom getter
+//        get() {
+//            return field.toLowerCase()
+//        }
+//
+//    var maxSpeed :Int = 250
+////        get() = field
+//        set(value) {
+//            field = if(value > 0 ) value else throw IllegalArgumentException("Maxspeed cannot be less than 0")
+//         }
+//
+//    var myModel : String = "M5"
+//        private set
+//
+//    init {
+//        this.myModel = "M3"
+//        this.owner = "Frank"
+//    }
+//
+//}
 
 data class User(val id : Long, var name: String)
 
+//fun main(){
+//    val user1 = User(1, "Denis")
+//
+////    val name = user1.name
+////    println(name)
+//    user1.name = "Michael"
+//    val user2 = User(1, "Michael")
+//
+//    println(user1 == user2)
+//
+//    println("User Details: $user1")
+//
+//    val updatedUser = user1.copy(name = "Denis Panjuta")
+//    println(user1)
+//    println(updatedUser)
+//
+//    println(updatedUser.component1()) // print 1
+//    println(updatedUser.component2()) // prints Denis Panjuta
+//
+//    val (id,name) = updatedUser
+//    println("id=$id, name=$name")
+//}
+
+
+// Super Class, Parent Class, Base Class of Vehicle
+open class Car(val name: String, val brand :String){
+    open var range: Double = 0.0
+
+    fun extendRange(amount: Double){
+        if(amount > 0){
+            range += amount
+        }
+    }
+    open fun drive(distance: Double){
+        println("Drove for $distance KM")
+    }
+
+
+}
+
+// Sub Class of Vehicle or Derived class of Vehicle,
+class ElectricCar(name: String, brand:String, batteryLife: Double) : Car(name, brand){
+    override var range = batteryLife * 6
+    var chargerType = "Type1"
+    override  fun drive(distance: Double){
+        println("Drove for $distance KM on electricity")
+
+    }
+    fun drive(){
+        println("Drove for $range KM on electricity")
+
+    }
+}
+
+
 fun main(){
-    val user1 = User(1, "Denis")
+    var audiA3 = Car("A3","Audi")
+    var teslaS = ElectricCar("S-Model","Tesla",85.0)
+    teslaS.chargerType = "Type2"
+    teslaS.extendRange(200.0)
 
-//    val name = user1.name
-//    println(name)
-    user1.name = "Michael"
-    val user2 = User(1, "Michael")
+    teslaS.drive()
 
-    println(user1 == user2)
-
-    println("User Details: $user1")
-
-    val updatedUser = user1.copy(name = "Denis Panjuta")
-    println(user1)
-    println(updatedUser)
-
-    println(updatedUser.component1()) // print 1
-    println(updatedUser.component2()) // prints Denis Panjuta
-
-    val (id,name) = updatedUser
-    println("id=$id, name=$name")
+    // Polymorphism
+    audiA3.drive(200.0)
+    teslaS.drive(200.0)
 }
