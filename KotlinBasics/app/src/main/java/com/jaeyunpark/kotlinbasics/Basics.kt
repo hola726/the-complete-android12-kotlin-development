@@ -241,18 +241,18 @@ package com.jaeyunpark.kotlinbasics
 
 
 
-fun main(){
-    var denis = Person("Denis", "Panjuta", 31)
-    denis.hobby = "skateboard"
-    denis.age = 32
-    println("Denis is ${denis.age} years old")
-    denis.stateHobby()
-    var john = Person()
-    john.hobby = "play video games"
-    john.stateHobby()
-    var johnPeterson = Person(lastName = "Peterson")
-
-}
+//fun main(){
+//    var denis = Person("Denis", "Panjuta", 31)
+//    denis.hobby = "skateboard"
+//    denis.age = 32
+//    println("Denis is ${denis.age} years old")
+//    denis.stateHobby()
+//    var john = Person()
+//    john.hobby = "play video games"
+//    john.stateHobby()
+//    var johnPeterson = Person(lastName = "Peterson")
+//
+//}
 
 class Person(firstName: String = "John", lastName: String = "Doe"){
     // Member Variables - Properties.
@@ -276,6 +276,40 @@ class Person(firstName: String = "John", lastName: String = "Doe"){
     fun stateHobby(){
 
         println("$firstName\'S hobby is $hobby")
+    }
+
+}
+
+fun main(){
+    var myCar = Car()
+    println("brnad is : ${myCar.myBrand}")
+    myCar.maxSpeed = 200
+    println("Maxspped is ${myCar.maxSpeed}")
+    println("Model is ${myCar.myModel}")
+
+}
+
+class Car(){
+    lateinit var owner: String
+
+    val myBrand: String = "BMW"
+        // Custom getter
+        get() {
+            return field.toLowerCase()
+        }
+
+    var maxSpeed :Int = 250
+//        get() = field
+        set(value) {
+            field = if(value > 0 ) value else throw IllegalArgumentException("Maxspeed cannot be less than 0")
+         }
+
+    var myModel : String = "M5"
+        private set
+
+    init {
+        this.myModel = "M3"
+        this.owner = "Frank"
     }
 
 }
