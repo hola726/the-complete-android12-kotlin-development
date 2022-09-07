@@ -392,19 +392,79 @@ class ElectricCar(maxSpeed: Double, name: String, brand:String, batteryLife: Dou
 }
 
 
-fun main(){
-    var audiA3 = Car(200.0,"A3","Audi")
-    var teslaS = ElectricCar(240.0,"S-Model","Tesla",85.0)
-    teslaS.chargerType = "Type2"
-    teslaS.extendRange(200.0)
+//fun main(){
+//    var audiA3 = Car(200.0,"A3","Audi")
+//    var teslaS = ElectricCar(240.0,"S-Model","Tesla",85.0)
+//    teslaS.chargerType = "Type2"
+//    teslaS.extendRange(200.0)
+//
+//    teslaS.drive()
+//    teslaS.brake()
+//    audiA3.brake()
+//
+//    // Polymorphism
+//    audiA3.drive(200.0)
+//    teslaS.drive(200.0)
+//}
 
-    teslaS.drive()
-    teslaS.brake()
-    audiA3.brake()
 
-    // Polymorphism
-    audiA3.drive(200.0)
-    teslaS.drive(200.0)
+abstract class Mammal(val name: String, val origin: String,
+                      val weight: Double) {   // Concrete (Non Abstract) Properties
+
+    // Abstract Property (Must be overridden by Subclasses)
+    abstract var maxSpeed: Double
+
+    // Abstract Methods (Must be implemented by Subclasses)
+    abstract fun run()
+    abstract fun breath()
+
+    // Concrete (Non Abstract) Method
+    fun displayDetails() {
+        println("Name: $name, Origin: $origin, Weight: $weight, " +
+                "Max Speed: $maxSpeed")
+    }
+}
+
+class Human(name: String, origin: String, weight: Double,
+            override var maxSpeed: Double): Mammal(name, origin, weight) {
+
+    override fun run() {
+        // Code to run
+        println("Runs on two legs")
+    }
+
+    override fun breath() {
+        // Code to breath
+        println("Breath through mouth or nose")
+    }
+}
+
+class Elephant(name: String, origin: String, weight: Double,
+               override var maxSpeed: Double): Mammal(name, origin, weight) {
+
+    override fun run() {
+        // Code to run
+        println("Runs on four legs")
+    }
+
+    override fun breath() {
+        // Code to breath
+        println("Breath through the trunk")
+    }
+}
+
+fun main() {
+    val human = Human("Denis", "Russia",
+        70.0, 28.0)
+    val elephant = Elephant("Rosy", "India",
+        5400.0, 25.0)
+
+    human.run()
+    elephant.run()
+
+    human.breath()
+    elephant.breath()
+
 }
 
 
