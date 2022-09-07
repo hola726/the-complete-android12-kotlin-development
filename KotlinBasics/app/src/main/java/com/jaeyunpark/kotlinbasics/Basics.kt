@@ -453,18 +453,56 @@ class Elephant(name: String, origin: String, weight: Double,
     }
 }
 
-fun main() {
-    val human = Human("Denis", "Russia",
-        70.0, 28.0)
-    val elephant = Elephant("Rosy", "India",
-        5400.0, 25.0)
+//fun main() {
+//    val human = Human("Denis", "Russia",
+//        70.0, 28.0)
+//    val elephant = Elephant("Rosy", "India",
+//        5400.0, 25.0)
+//
+//    human.run()
+//    elephant.run()
+//
+//    human.breath()
+//    elephant.breath()
+//
+//}
 
-    human.run()
-    elephant.run()
+fun main(){
 
-    human.breath()
-    elephant.breath()
+    val stringList : List<String> = listOf("Denis", "Frank", "Michael","Garry")
+    val mixedTypeList: List<Any> = listOf("Denis", 31, 5, "BDay", 70.5,"weights", "Kg")
 
+    for(value in mixedTypeList){
+        if(value is Int){
+            println("Interger: $value")
+        }else if(value is Double){
+            println("Double: '$value' with Floor value ${Math.floor(value)}")
+
+        }else if(value is String){
+            println("String: '$value' of length ${value.length}")
+        }else{
+            println("Unknown Type")
+        }
+    }
+
+    // Alternatively
+    for (value in mixedTypeList){
+        when(value){
+            is Int -> println("Interger: $value")
+            is Double ->  println("Double: '$value' with Floor value ${Math.floor(value)}")
+            is String ->  println("String: '$value' of length ${value.length}")
+            else ->   println("Unknown Type")
+        }
+    }
+
+    // SMART CAST
+    val obj1: Any = "I have a dream"
+    if(obj1 !is String){
+        println("Not a String")
+    }else{
+        // obj is automatically cast to a String in this scope
+        println("Found a String of length${obj1.length}")
+    }
 }
 
 
