@@ -506,35 +506,62 @@ class Elephant(name: String, origin: String, weight: Double,
 //}
 
 
+//fun main(){
+//
+////    var numbers: IntArray = intArrayOf(1,2,3,4,5,6)
+//
+////    var numbers = intArrayOf(1,2,3,4,5,6)
+//
+//    var numbers = arrayOf(1,2,3,4,5,6)
+//    var numbersD: DoubleArray = doubleArrayOf(1.0,2.0,3.0,4.0,5.0,6.0)
+//    print("initial values ${numbers.contentToString()}")
+//    numbersD[0] = 6.0
+//    numbersD[1] = 5.0
+//    numbersD[4] = 2.0
+//    numbersD[5] = 1.0
+//    print("\ninitial values ${numbers.contentToString()}")
+//
+//    val mix = arrayOf("Sun","Mon", "Tues", 1, 2, 3, Fruit("Apple",2.5))
+//    print(mix.contentToString())
+//
+//    var fruits = arrayOf(Fruit("Apple",2.5), Fruit("Grape",3.5))
+//    for(index in fruits.indices){
+//        print("${fruits[index].name} is in index $index")
+//    }
+//
+//    // print(numbers.contentToString())
+////    for(element in numbers){
+////        print(" ${element+2}")
+////    }
+//}
+//
+//data class  Fruit(val name: String, var price: Double)
+
+
 fun main(){
 
-//    var numbers: IntArray = intArrayOf(1,2,3,4,5,6)
-
-//    var numbers = intArrayOf(1,2,3,4,5,6)
-
-    var numbers = arrayOf(1,2,3,4,5,6)
-    var numbersD: DoubleArray = doubleArrayOf(1.0,2.0,3.0,4.0,5.0,6.0)
-    print("initial values ${numbers.contentToString()}")
-    numbersD[0] = 6.0
-    numbersD[1] = 5.0
-    numbersD[4] = 2.0
-    numbersD[5] = 1.0
-    print("\ninitial values ${numbers.contentToString()}")
-
-    val mix = arrayOf("Sun","Mon", "Tues", 1, 2, 3, Fruit("Apple",2.5))
-    print(mix.contentToString())
-
-    var fruits = arrayOf(Fruit("Apple",2.5), Fruit("Grape",3.5))
-    for(index in fruits.indices){
-        print("${fruits[index].name} is in index $index")
-    }
-
-    // print(numbers.contentToString())
-//    for(element in numbers){
-//        print(" ${element+2}")
+    val months = listOf("January", "February", "March")
+    val anyTypes = listOf(1,2,3,true, false, "String")
+//    print(anyTypes.size)
+    print(months[1])
+//
+//    for(month in months){
+//        println(month)
 //    }
-}
 
-data class  Fruit(val name: String, var price: Double)
+    val addionalMonths = months.toMutableList()
+    var newMonths = arrayOf("April", "May", "June")
+    addionalMonths.addAll(newMonths)
+    print(addionalMonths)
+
+    val days = mutableListOf<String>("Mon","Tue","Wed")
+    days.add("Thue")
+    days[2] = "Sunday"
+//    days.removeAt(3)
+    val removeList = mutableListOf<String>("Mon","Wed")
+    days.removeAll(removeList)
+    print(days)
+
+}
 
 
