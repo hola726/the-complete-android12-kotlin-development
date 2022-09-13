@@ -467,42 +467,74 @@ class Elephant(name: String, origin: String, weight: Double,
 //
 //}
 
+//fun main(){
+//
+//    val stringList : List<String> = listOf("Denis", "Frank", "Michael","Garry")
+//    val mixedTypeList: List<Any> = listOf("Denis", 31, 5, "BDay", 70.5,"weights", "Kg")
+//
+//    for(value in mixedTypeList){
+//        if(value is Int){
+//            println("Interger: $value")
+//        }else if(value is Double){
+//            println("Double: '$value' with Floor value ${Math.floor(value)}")
+//
+//        }else if(value is String){
+//            println("String: '$value' of length ${value.length}")
+//        }else{
+//            println("Unknown Type")
+//        }
+//    }
+//
+//    // Alternatively
+//    for (value in mixedTypeList){
+//        when(value){
+//            is Int -> println("Interger: $value")
+//            is Double ->  println("Double: '$value' with Floor value ${Math.floor(value)}")
+//            is String ->  println("String: '$value' of length ${value.length}")
+//            else ->   println("Unknown Type")
+//        }
+//    }
+//
+//    // SMART CAST
+//    val obj1: Any = "I have a dream"
+//    if(obj1 !is String){
+//        println("Not a String")
+//    }else{
+//        // obj is automatically cast to a String in this scope
+//        println("Found a String of length${obj1.length}")
+//    }
+//}
+
+
 fun main(){
 
-    val stringList : List<String> = listOf("Denis", "Frank", "Michael","Garry")
-    val mixedTypeList: List<Any> = listOf("Denis", 31, 5, "BDay", 70.5,"weights", "Kg")
+//    var numbers: IntArray = intArrayOf(1,2,3,4,5,6)
 
-    for(value in mixedTypeList){
-        if(value is Int){
-            println("Interger: $value")
-        }else if(value is Double){
-            println("Double: '$value' with Floor value ${Math.floor(value)}")
+//    var numbers = intArrayOf(1,2,3,4,5,6)
 
-        }else if(value is String){
-            println("String: '$value' of length ${value.length}")
-        }else{
-            println("Unknown Type")
-        }
+    var numbers = arrayOf(1,2,3,4,5,6)
+    var numbersD: DoubleArray = doubleArrayOf(1.0,2.0,3.0,4.0,5.0,6.0)
+    print("initial values ${numbers.contentToString()}")
+    numbersD[0] = 6.0
+    numbersD[1] = 5.0
+    numbersD[4] = 2.0
+    numbersD[5] = 1.0
+    print("\ninitial values ${numbers.contentToString()}")
+
+    val mix = arrayOf("Sun","Mon", "Tues", 1, 2, 3, Fruit("Apple",2.5))
+    print(mix.contentToString())
+
+    var fruits = arrayOf(Fruit("Apple",2.5), Fruit("Grape",3.5))
+    for(index in fruits.indices){
+        print("${fruits[index].name} is in index $index")
     }
 
-    // Alternatively
-    for (value in mixedTypeList){
-        when(value){
-            is Int -> println("Interger: $value")
-            is Double ->  println("Double: '$value' with Floor value ${Math.floor(value)}")
-            is String ->  println("String: '$value' of length ${value.length}")
-            else ->   println("Unknown Type")
-        }
-    }
-
-    // SMART CAST
-    val obj1: Any = "I have a dream"
-    if(obj1 !is String){
-        println("Not a String")
-    }else{
-        // obj is automatically cast to a String in this scope
-        println("Found a String of length${obj1.length}")
-    }
+    // print(numbers.contentToString())
+//    for(element in numbers){
+//        print(" ${element+2}")
+//    }
 }
+
+data class  Fruit(val name: String, var price: Double)
 
 
