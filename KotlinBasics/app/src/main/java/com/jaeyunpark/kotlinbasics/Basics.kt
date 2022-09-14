@@ -538,30 +538,59 @@ class Elephant(name: String, origin: String, weight: Double,
 //data class  Fruit(val name: String, var price: Double)
 
 
+//fun main(){
+//
+//    val months = listOf("January", "February", "March")
+//    val anyTypes = listOf(1,2,3,true, false, "String")
+////    print(anyTypes.size)
+//    print(months[1])
+////
+////    for(month in months){
+////        println(month)
+////    }
+//
+//    val addionalMonths = months.toMutableList()
+//    var newMonths = arrayOf("April", "May", "June")
+//    addionalMonths.addAll(newMonths)
+//    print(addionalMonths)
+//
+//    val days = mutableListOf<String>("Mon","Tue","Wed")
+//    days.add("Thue")
+//    days[2] = "Sunday"
+////    days.removeAt(3)
+//    val removeList = mutableListOf<String>("Mon","Wed")
+//    days.removeAll(removeList)
+//    print(days)
+//
+//}
+
 fun main(){
 
-    val months = listOf("January", "February", "March")
-    val anyTypes = listOf(1,2,3,true, false, "String")
-//    print(anyTypes.size)
-    print(months[1])
-//
-//    for(month in months){
-//        println(month)
-//    }
+    var fruits = setOf("Orange", "Apple", "Mango", "Grape", "Apple")
+//    print(fruits.toSortedSet())
 
-    val addionalMonths = months.toMutableList()
-    var newMonths = arrayOf("April", "May", "June")
-    addionalMonths.addAll(newMonths)
-    print(addionalMonths)
+    val newFruits  = fruits.toMutableList()
+    newFruits.add("Water Melon")
+    newFruits.add("Pear")
+//    print(newFruits.elementAt(4))
 
-    val days = mutableListOf<String>("Mon","Tue","Wed")
-    days.add("Thue")
-    days[2] = "Sunday"
-//    days.removeAt(3)
-    val removeList = mutableListOf<String>("Mon","Wed")
-    days.removeAll(removeList)
-    print(days)
+    val daysOfTheWeek = mapOf( 1 to "Monday", 2 to "Tuesday", 3 to "Wednesday")
+
+    for(key in daysOfTheWeek.keys){
+
+        print("$key is to ${daysOfTheWeek[key]}")
+
+    }
+
+    val fruitsMap = mapOf("Favorite" to Fruit("Grape", 2.5), "OK" to Fruit("Apple", 1.0))
+
+    val newDaysOfWeek = daysOfTheWeek.toMutableMap()
+    newDaysOfWeek[4] = "ThursDay"
+    newDaysOfWeek[5] = "Friday"
+
+    print(newDaysOfWeek.toSortedMap())
 
 }
 
+data class  Fruit(val name: String, var price: Double)
 
