@@ -1,5 +1,7 @@
 package com.jaeyunpark.kotlinbasics
 
+import java.lang.NullPointerException
+
 //fun main(){
 //    // immutable variable
 //    // TODO: Add new functionality
@@ -564,33 +566,45 @@ class Elephant(name: String, origin: String, weight: Double,
 //
 //}
 
-fun main(){
+//fun main(){
+//
+//    var fruits = setOf("Orange", "Apple", "Mango", "Grape", "Apple")
+////    print(fruits.toSortedSet())
+//
+//    val newFruits  = fruits.toMutableList()
+//    newFruits.add("Water Melon")
+//    newFruits.add("Pear")
+////    print(newFruits.elementAt(4))
+//
+//    val daysOfTheWeek = mapOf( 1 to "Monday", 2 to "Tuesday", 3 to "Wednesday")
+//
+//    for(key in daysOfTheWeek.keys){
+//
+//        print("$key is to ${daysOfTheWeek[key]}")
+//
+//    }
+//
+//    val fruitsMap = mapOf("Favorite" to Fruit("Grape", 2.5), "OK" to Fruit("Apple", 1.0))
+//
+//    val newDaysOfWeek = daysOfTheWeek.toMutableMap()
+//    newDaysOfWeek[4] = "ThursDay"
+//    newDaysOfWeek[5] = "Friday"
+//
+//    print(newDaysOfWeek.toSortedMap())
+//
+//}
+//
+//data class  Fruit(val name: String, var price: Double)
 
-    var fruits = setOf("Orange", "Apple", "Mango", "Grape", "Apple")
-//    print(fruits.toSortedSet())
 
-    val newFruits  = fruits.toMutableList()
-    newFruits.add("Water Melon")
-    newFruits.add("Pear")
-//    print(newFruits.elementAt(4))
-
-    val daysOfTheWeek = mapOf( 1 to "Monday", 2 to "Tuesday", 3 to "Wednesday")
-
-    for(key in daysOfTheWeek.keys){
-
-        print("$key is to ${daysOfTheWeek[key]}")
-
+fun main(args: Array<String>){
+    try{
+        val data = 10/5
+        println(data)
+    }catch (e: NullPointerException){
+        println(e)
+    }finally {
+        println("finally block always executes")
     }
-
-    val fruitsMap = mapOf("Favorite" to Fruit("Grape", 2.5), "OK" to Fruit("Apple", 1.0))
-
-    val newDaysOfWeek = daysOfTheWeek.toMutableMap()
-    newDaysOfWeek[4] = "ThursDay"
-    newDaysOfWeek[5] = "Friday"
-
-    print(newDaysOfWeek.toSortedMap())
-
+    println("below code...")
 }
-
-data class  Fruit(val name: String, var price: Double)
-
