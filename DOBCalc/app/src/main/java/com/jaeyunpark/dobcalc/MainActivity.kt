@@ -1,4 +1,4 @@
-fpackage com.jaeyunpark.dobcalc
+package com.jaeyunpark.dobcalc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
