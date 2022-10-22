@@ -5,7 +5,11 @@
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/drawable/background_drawing_view_layout.xml" value="0.261" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.28020833333333334" />
+        <entry key="app/src/main/res/drawable/large.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/medium.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/small.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_brush_size.xml" value="0.1" />
       </map>
     </option>
   </component>
