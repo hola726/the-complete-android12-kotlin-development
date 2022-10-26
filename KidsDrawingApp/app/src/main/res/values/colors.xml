@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="purple_200" tools:ignore="MissingDefaultResource">#FFBB86FC</color>
+    <color name="purple_500" tools:ignore="MissingDefaultResource">#FF6200EE</color>
+    <color name="purple_700" tools:ignore="MissingDefaultResource">#FF3700B3</color>
+    <color name="teal_200" tools:ignore="MissingDefaultResource">#FF03DAC5</color>
+    <color name="teal_700" tools:ignore="MissingDefaultResource">#FF018786</color>
+<!--    <color name="white" tools:ignore="MissingDefaultResource">#FFFFFFFF</color>-->
+
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#3DAC5</color>
-
-    <color name="skin">#3DAC5</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="skin">#ffcc99</color>
     <color name="black">#000000</color>
     <color name="red">#ff0000</color>
     <color name="green">#00ff00</color>
@@ -12,4 +18,6 @@
     <color name="yellow">#ffff00</color>
     <color name="lollipop">#35a79c</color>
     <color name="random">#A349B1</color>
+    <color name="white">#FFFFFF</color>
+
 </resources>
