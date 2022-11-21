@@ -181,5 +181,41 @@ class MainActivity : AppCompatActivity() {
         return returnedBitmap
 
     }
+    private suspend fun saveBitmapFile(mBitmap: Bitmap?) : String{
+        var result = ""
+        withContext(Dispatchers.IO){
+            if(mBitmap != null){
+                try{
+                    val bytes = ByteArrayOutputStream()
+                    mBitmap.compress(Bitmap.CompressFormat.PNG, 90, bytes)
+
+                    val f = File(externalCacheDir?.absoluteFile.toString()
+                            + File.separator + "KidDrawingApp_" + System.currentTimeMillis() / 1000 + ".png")
+
+                    val fo = FileOutputStream(f)
+                    fo.write(bytes.toByteArray())
+                    fo.close()
+
+                    result = f.absolutePath
+
+                    runOnUiThread{
+                        if(result.isNotEmpty()){
+                            Toast.makeText(this@MainActivity,
+                            "File saved successfully : $result",
+                            Toast.LENGTH_SHORT).show()
+                        }else{
+                            Toast.makeText(this@MainActivity,
+                                "Something went wrong while saving the file",
+                                Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }catch (e:Exception){
+                    result = ""
+                    e.printStackTrace()
+                }
+            }
+        }
+        return result
+    }
 
 }
