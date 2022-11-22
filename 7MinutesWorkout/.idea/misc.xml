@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/item_circular_color_accent_border.xml" value="0.239" />
+        <entry key="app/src/main/res/drawable/item_color_accent_border_ripple_background.xml" value="0.239" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5962085308056873" />
       </map>
     </option>
   </component>
