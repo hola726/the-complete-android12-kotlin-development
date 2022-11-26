@@ -3,6 +3,7 @@ package com.jaeyunpark.a7minutesworkout
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
 import android.widget.Toast
 import com.jaeyunpark.a7minutesworkout.databinding.ActivityExerciseBinding
 
@@ -10,6 +11,9 @@ class ExerciseActivity : AppCompatActivity() {
     private var binding : ActivityExerciseBinding? = null
     private var restTimer : CountDownTimer? = null
     private var restProgress = 0
+
+    private var exerciseTimer : CountDownTimer? = null
+    private var exerciseProgress = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +43,19 @@ class ExerciseActivity : AppCompatActivity() {
         setRestProgressBar()
     }
 
+    private fun setUpExerciseView(){
+        binding?.flProgressBar?.visibility = View.INVISIBLE
+        binding?.tvTitle?.text = "Exercise Name"
+        binding?.flExerciseView?.visibility = View.VISIBLE
+
+        if(exerciseTimer != null){
+
+            exerciseTimer?.cancel()
+            exerciseProgress = 0
+        }
+        setExerciseProgressBar()
+    }
+
     private fun setRestProgressBar(){
 
         binding?.progressBar?.progress = restProgress
@@ -51,9 +68,27 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
+                setUpExerciseView()
+            }
+        }.start()
+    }
+
+
+    private fun setExerciseProgressBar(){
+
+        binding?.progressBarExercise?.progress = exerciseProgress
+
+        exerciseTimer = object : CountDownTimer(30000,3000){
+            override fun onTick(p0: Long) {
+                exerciseProgress ++
+                binding?.progressBarExercise?.progress = 30 - exerciseProgress
+                binding?.tvTimerExercise?.text = (30 - exerciseProgress).toString()
+            }
+
+            override fun onFinish() {
                 Toast.makeText(this@ExerciseActivity,
-                    "Here now wee will start the exercise",
-                Toast.LENGTH_SHORT
+                    "30 Seconds are over, lets go to the rest view",
+                    Toast.LENGTH_SHORT
                 ).show()
             }
         }.start()
@@ -67,6 +102,14 @@ class ExerciseActivity : AppCompatActivity() {
             restTimer?.cancel()
             restProgress = 0
         }
+
+        if(exerciseTimer != null){
+
+            exerciseTimer?.cancel()
+            exerciseProgress = 0
+        }
         setRestProgressBar()
+        setExerciseProgressBar()
+
     }
 }
