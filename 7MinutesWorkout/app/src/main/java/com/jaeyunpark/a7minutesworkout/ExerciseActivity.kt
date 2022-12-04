@@ -95,7 +95,7 @@ class ExerciseActivity : AppCompatActivity() {
 
         binding?.progressBarExercise?.progress = exerciseProgress
 
-        exerciseTimer = object : CountDownTimer(30000,3000){
+        exerciseTimer = object : CountDownTimer(30000,1000){
             override fun onTick(p0: Long) {
                 exerciseProgress ++
                 binding?.progressBarExercise?.progress = 30 - exerciseProgress
@@ -103,10 +103,16 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                Toast.makeText(this@ExerciseActivity,
-                    "30 Seconds are over, lets go to the rest view",
-                    Toast.LENGTH_SHORT
-                ).show()
+                if(currentExercisePosition < exerciseList?.size!! -1){
+
+                    setUpRestView()
+                }else{
+
+                    Toast.makeText(this@ExerciseActivity,
+                        "Congratulation! You have complete the 7 minutes workout.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }.start()
     }

@@ -24,7 +24,7 @@
         android:textSize="22sp"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/flExerciseView"
+        app:layout_constraintBottom_toTopOf="@id/flRestView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -58,11 +58,14 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
+        tools:visibility="visible"
+        android:visibility="gone"
         android:background="@drawable/item_circular_color_accent_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvExerciseName" >
+        app:layout_constraintTop_toBottomOf="@id/toolbarExercise" >
+
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -73,9 +76,10 @@
             android:background="@drawable/circular_progress_grey"
             android:indeterminate="false"
             android:max="10"
-            android:progress="100"
+            android:progress="10"
             android:progressDrawable="@drawable/circular_progress_bar"
             android:rotation="-90" />
+
 
         <LinearLayout
             android:layout_width="63dp"
@@ -103,27 +107,27 @@
 
     <FrameLayout
         android:id="@+id/flExerciseView"
+
+
+
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
-        tools:visibility="visible"
-        android:visibility="gone"
         android:background="@drawable/item_circular_color_accent_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbarExercise" >
-
+        app:layout_constraintTop_toBottomOf="@id/tvExerciseName" >
         <ProgressBar
             android:id="@+id/progressBarExercise"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="97dp"
-            android:layout_height="100dp"
+            android:layout_width="100dp"
+            android:layout_height="97dp"
             android:layout_gravity="center"
             android:background="@drawable/circular_progress_grey"
             android:indeterminate="false"
             android:max="30"
-            android:progress="300"
+            android:progress="30"
             android:progressDrawable="@drawable/circular_progress_bar"
             android:rotation="-90" />
 
