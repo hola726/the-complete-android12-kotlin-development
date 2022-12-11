@@ -49,6 +49,12 @@ class ExerciseModel(
         return isSelected
     }
 
+
+    fun setIsComplete(isComplete: Boolean){
+        this.isComplete = isComplete
+
+    }
+
     fun setIsSelected(isSelected: Boolean){
         this.isSelected = isSelected
 
