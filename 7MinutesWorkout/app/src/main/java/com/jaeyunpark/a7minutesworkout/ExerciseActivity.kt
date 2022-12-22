@@ -162,7 +162,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 currentExercisePosition ++
 
                 exerciseList!![currentExercisePosition].setIsSelected(true)
-                exerciseAdapter!!.notifyDataSetChanged()
+                exerciseAdapter?.notifyDataSetChanged()
                 setUpExerciseView()
             }
         }.start()
@@ -198,9 +198,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
 
     override fun onDestroy() {
-        super.onDestroy()
         if(restTimer != null){
-
             restTimer?.cancel()
             restProgress = 0
         }
@@ -221,10 +219,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         if(player != null){
             player!!.stop()
         }
-        binding = null
+        super.onDestroy()
 
-        setRestProgressBar()
-        setExerciseProgressBar()
+        binding = null
 
     }
 
