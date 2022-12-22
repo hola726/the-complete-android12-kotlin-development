@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.jaeyunpark.a7minutesworkout.databinding.ActivityFinishBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -49,8 +52,11 @@ class FinishActivity : AppCompatActivity() {
 
         Log.e("Formatted Date : ","" + date)
 
+
         lifecycleScope.launch {
-            historyDao.insert(HistoryEntity(date))
+            withContext(Dispatchers.IO) {
+                historyDao.insert(HistoryEntity(date))
+            }
         }
 
     }
