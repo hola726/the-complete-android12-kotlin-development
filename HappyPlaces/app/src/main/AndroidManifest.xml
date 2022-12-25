@@ -18,7 +18,7 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:label="ADD HAPPY PLACE"
-            android:theme="style/CustomNoActonBarTheme"
+            android:theme="@style/CustomNoActionBarTheme"
             />
         <activity
             android:name=".MainActivity"
