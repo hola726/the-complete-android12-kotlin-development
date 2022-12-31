@@ -1,4 +1,4 @@
-package com.happyplaces
+package com.happyplaces.activities
 
 import android.Manifest
 import android.app.Activity
@@ -13,12 +13,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
-import android.telecom.GatewayInfo
 import android.util.Log
 import android.view.View
-import android.widget.Gallery
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.happyplaces.R
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
