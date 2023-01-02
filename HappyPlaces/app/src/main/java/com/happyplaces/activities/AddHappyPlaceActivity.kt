@@ -113,7 +113,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                     }
 
                 }
-            }else if(requestCode == CAMERA){
+            } else if (requestCode == CAMERA) {
                 val thumbnail: Bitmap = data!!.extras!!.get("data") as Bitmap
                 saveImageToInternalStorage = saveImageToInternalStorage(thumbnail)
 
@@ -200,17 +200,17 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         et_date.setText(sdf.format(cal.time).toString())
     }
 
-    private fun saveImageToInternalStorage(bitmap: Bitmap): Uri{
+    private fun saveImageToInternalStorage(bitmap: Bitmap): Uri {
         val wrapper = ContextWrapper(applicationContext)
         var file = wrapper.getDir(IMAGE_DIRECTORY, Context.MODE_PRIVATE)
         file = File(file, "${UUID.randomUUID()}.jpg")
 
-        try{
-            val stream : OutputStream = FileOutputStream(file)
+        try {
+            val stream: OutputStream = FileOutputStream(file)
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
             stream.flush()
             stream.close()
-        }catch (e:IOException){
+        } catch (e: IOException) {
             e.printStackTrace()
         }
         return Uri.parse(file.absolutePath)
