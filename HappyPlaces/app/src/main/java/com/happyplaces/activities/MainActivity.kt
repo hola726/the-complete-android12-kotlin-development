@@ -27,24 +27,31 @@ class MainActivity : AppCompatActivity() {
         getHappyPlacesListFromLocalDB()
     }
 
-    private fun setupHappyPlacesRecyclerView(happyPlaceList: ArrayList<HappyPlaceModel>){
+    private fun setupHappyPlacesRecyclerView(happyPlaceList: ArrayList<HappyPlaceModel>) {
         rv_happy_places_list.layoutManager = LinearLayoutManager(this)
         rv_happy_places_list.setHasFixedSize(true)
 
-        val placesAdapter = HappyPlacesAdapter(this,happyPlaceList)
+        val placesAdapter = HappyPlacesAdapter(this, happyPlaceList)
         rv_happy_places_list.adapter = placesAdapter
+
+        placesAdapter.setOnClickListener(object : HappyPlacesAdapter.OnClickListener {
+            override fun onClick(position: Int, model: HappyPlaceModel) {
+                val intent = Intent(this@MainActivity, HappyPlaceDetailActivity::class.java)
+                startActivity(intent)
+            }
+        })
 
     }
 
-    private fun getHappyPlacesListFromLocalDB(){
+    private fun getHappyPlacesListFromLocalDB() {
         val dbHandler = DatabaseHandler(this)
         val getHappyPlaceList: ArrayList<HappyPlaceModel> = dbHandler.getHappyPlacesList()
 
-        if(getHappyPlaceList.size > 0 ){
+        if (getHappyPlaceList.size > 0) {
             rv_happy_places_list.visibility = View.VISIBLE
             tv_no_records_available.visibility = View.GONE
             setupHappyPlacesRecyclerView(getHappyPlaceList)
-        }else{
+        } else {
             rv_happy_places_list.visibility = View.GONE
             tv_no_records_available.visibility = View.VISIBLE
         }
@@ -52,15 +59,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == ADD_PLACE_ACTIVITY_REQUEST_CODE){
-            if(resultCode == Activity.RESULT_OK){
+        if (requestCode == ADD_PLACE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
                 getHappyPlacesListFromLocalDB()
-            }else{
-                Log.e("Activity","Cancelled or Back pressed")
+            } else {
+                Log.e("Activity", "Cancelled or Back pressed")
             }
         }
     }
-    companion object{
+
+    companion object {
         var ADD_PLACE_ACTIVITY_REQUEST_CODE = 1
     }
 }
