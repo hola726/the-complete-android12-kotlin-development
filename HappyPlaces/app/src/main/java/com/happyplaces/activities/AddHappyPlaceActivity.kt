@@ -66,7 +66,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             }
         updateDateInView()
 
-        if(mHappyPlaceDetails != null){
+        if (mHappyPlaceDetails != null) {
             supportActionBar?.title = "Edit Happy Place"
             et_title.setText(mHappyPlaceDetails!!.title)
             et_description.setText(mHappyPlaceDetails!!.description)
@@ -128,7 +128,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                     }
                     else -> {
                         val happyPlaceModel = HappyPlaceModel(
-                            0,
+                            if (mHappyPlaceDetails == null) 0 else mHappyPlaceDetails!!.id,
                             et_title.text.toString(),
                             saveImageToInternalStorage.toString(),
                             et_description.text.toString(),
@@ -139,11 +139,19 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                         )
 
                         val dbHandler = DatabaseHandler(this)
-                        val addHappyPlace = dbHandler.addHappyPlace(happyPlaceModel)
 
-                        if (addHappyPlace > 0) {
-                            setResult(Activity.RESULT_OK)
-                            finish()
+                        if (mHappyPlaceDetails == null) {
+                            val addHappyPlace = dbHandler.addHappyPlace(happyPlaceModel)
+                            if (addHappyPlace > 0) {
+                                setResult(Activity.RESULT_OK)
+                                finish()
+                            }
+                        } else {
+                            val updateHappyPlace = dbHandler.updateHappyPlace(happyPlaceModel)
+                            if (updateHappyPlace > 0) {
+                                setResult(Activity.RESULT_OK)
+                                finish()
+                            }
                         }
 
 
