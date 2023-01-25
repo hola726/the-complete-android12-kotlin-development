@@ -67,8 +67,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         if (intent.hasExtra(MainActivity.EXTRA_PLACE_DETAILS)) {
-            mHappyPlaceDetails =
-                intent.getParcelableExtra(MainActivity.EXTRA_PLACE_DETAILS) as HappyPlaceModel
+            mHappyPlaceDetails = intent.getSerializableExtra(MainActivity.EXTRA_PLACE_DETAILS) as HappyPlaceModel
         }
 
         dateSetListener =
