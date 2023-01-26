@@ -11,4 +11,5 @@
 
     <string name="image_content_description">image</string>
     <string name="google_maps_api_key">AIzaSyDZ_jm8dOcVCCa_oiucEbiLp5uBYRXZY8Y</string>
+    <string name="btn_text_view_on_map">VIEW ON MAP</string>
 </resources>
