@@ -15,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-
+        <activity
+            android:name=".activities.MapActivity"
+            android:label="HAPPY PLACE MAP"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomNoActionBarTheme" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
