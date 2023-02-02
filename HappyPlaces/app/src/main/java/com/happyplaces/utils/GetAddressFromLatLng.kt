@@ -4,6 +4,7 @@ import android.content.Context
 import android.location.Address
 import android.location.Geocoder
 import android.os.AsyncTask
+import android.provider.Telephony
 import java.lang.Exception
 import java.lang.StringBuilder
 import java.util.*
@@ -33,11 +34,25 @@ class GetAddressFromLatLng(
         }catch (e: Exception){
             e.printStackTrace()
         }
-        return "" 
+        return ""
     }
 
-    override fun onPostExecute(result: String?) {
-        super.onPostExecute(result)
+    override fun onPostExecute(resultString: String?) {
+        if(resultString == null){
+            mAddressListener.onError()
+        }else{
+            mAddressListener.onAddressFound(resultString)
+        }
+
+        super.onPostExecute(resultString)
+    }
+
+    fun setAddressListener(addressListener: AddressListener){
+        mAddressListener = addressListener
+    }
+
+    fun getAddress(){
+        execute()
     }
 
     interface AddressListener {
