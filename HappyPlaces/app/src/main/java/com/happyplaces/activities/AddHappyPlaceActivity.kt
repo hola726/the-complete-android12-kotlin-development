@@ -29,6 +29,7 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.happyplaces.R
 import com.happyplaces.database.DatabaseHandler
 import com.happyplaces.models.HappyPlaceModel
+import com.happyplaces.utils.GetAddressFromLatLng
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -136,11 +137,22 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private val mLocationCallBack = object : LocationCallback(){
+    private val mLocationCallBack = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             val mLastLocation: Location = locationResult.lastLocation!!
             mLatitude = mLastLocation.latitude
             mLongitude = mLastLocation.longitude
+            var addressTask = GetAddressFromLatLng(this@AddHappyPlaceActivity, mLatitude, mLongitude)
+            addressTask.setAddressListener(object : GetAddressFromLatLng.AddressListener{
+                override fun onAddressFound(address: String?) {
+                    et_location.setText(address)
+                }
+
+                override fun onError() {
+                    Log.e("Get Address:: ", "Something went wrong")
+                }
+            })
+            addressTask.getAddress()
         }
     }
 
