@@ -1,4 +1,4 @@
-package com.jaeyunpark.weatherapp
+package com.jaeyunpark.weatherapp.activities
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -16,11 +16,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.location.*
+import com.jaeyunpark.weatherapp.R
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.weatherapp.utils.Constants
 
 class MainActivity : AppCompatActivity() {
 
@@ -129,6 +131,27 @@ class MainActivity : AppCompatActivity() {
 
             val longitude = mLastLocation.longitude
             Log.i("Current Longitude", "$longitude")
+
+            getLocationWeatherDetails()
+
+        }
+    }
+
+    private fun getLocationWeatherDetails() {
+
+        if (Constants.isNetworkAvailable(this@MainActivity)) {
+
+            Toast.makeText(
+                this@MainActivity,
+                "You have connected to the internet. Now you can make an api call.",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            Toast.makeText(
+                this@MainActivity,
+                "No internet connection available.",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
