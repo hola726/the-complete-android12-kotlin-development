@@ -2,6 +2,7 @@ package com.jaeyunpark.weatherapp.activities
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
 
+    private var mProgressDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -157,6 +159,8 @@ class MainActivity : AppCompatActivity() {
                 latitude, longitude, Constants.METRIC_UNIT, Constants.APP_ID
             )
 
+            showCustomProgressDialog()
+
             listCall.enqueue(object : Callback<WeatherResponse> {
                 @SuppressLint("SetTextI18n")
                 override fun onResponse(
@@ -165,6 +169,8 @@ class MainActivity : AppCompatActivity() {
                 ) {
 
                     if (response.isSuccess) {
+
+                        hideProgressDialog()
 
                         val weatherList: WeatherResponse = response.body()
                         Log.i("Response Result", "$weatherList")
@@ -184,6 +190,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(t: Throwable) {
+                    hideProgressDialog()
                     Log.e("Errorrrrr", t.message.toString())
                 }
             })
@@ -193,6 +200,20 @@ class MainActivity : AppCompatActivity() {
                 "No internet connection available.",
                 Toast.LENGTH_SHORT
             ).show()
+        }
+    }
+
+    private fun showCustomProgressDialog() {
+        mProgressDialog = Dialog(this)
+
+        mProgressDialog!!.setContentView(R.layout.dialog_custom_progress)
+
+        mProgressDialog!!.show()
+    }
+
+    private fun hideProgressDialog() {
+        if (mProgressDialog != null) {
+            mProgressDialog!!.dismiss()
         }
     }
 
