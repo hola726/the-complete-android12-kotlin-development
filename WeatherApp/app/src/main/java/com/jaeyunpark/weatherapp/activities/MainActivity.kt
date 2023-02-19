@@ -6,6 +6,7 @@ import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
@@ -21,6 +22,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.location.*
+import com.google.gson.Gson
 import com.jaeyunpark.weatherapp.R
 import com.jaeyunpark.weatherapp.R.layout.activity_main
 import com.jaeyunpark.weatherapp.models.WeatherResponse
@@ -46,12 +48,16 @@ class MainActivity : AppCompatActivity() {
     private var mLatitude: Double = 0.0
     private var mLongitude: Double = 0.0
 
+    private lateinit var mSharedPreferences: SharedPreferences
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
+        mSharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE)
 
         if (!isLocationEnabled()) {
             Toast.makeText(
@@ -203,6 +209,10 @@ class MainActivity : AppCompatActivity() {
                         Log.i("Response Result", "$weatherList")
 
                         setupUI(weatherList)
+                        val weatherResponseJsonString = Gson().toJson(weatherList)
+                        val editor = mSharedPreferences.edit()
+                        editor.putString(Constants.WEATHER_RESPONSE_DATA, weatherResponseJsonString)
+                        editor.apply()
                     } else {
                         when (response.code()) {
                             400 -> {
