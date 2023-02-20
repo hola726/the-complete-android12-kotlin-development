@@ -59,6 +59,8 @@ class MainActivity : AppCompatActivity() {
 
         mSharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE)
 
+        setupUI()
+
         if (!isLocationEnabled()) {
             Toast.makeText(
                 this,
@@ -208,11 +210,12 @@ class MainActivity : AppCompatActivity() {
                         val weatherList: WeatherResponse = response.body()
                         Log.i("Response Result", "$weatherList")
 
-                        setupUI(weatherList)
                         val weatherResponseJsonString = Gson().toJson(weatherList)
                         val editor = mSharedPreferences.edit()
                         editor.putString(Constants.WEATHER_RESPONSE_DATA, weatherResponseJsonString)
                         editor.apply()
+
+                        setupUI()
                     } else {
                         when (response.code()) {
                             400 -> {
@@ -257,39 +260,50 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SetTextI18n", "NewApi")
-    private fun setupUI(weatherList: WeatherResponse) {
+    private fun setupUI() {
+        val weatherResponseJsonString =
+            mSharedPreferences.getString(Constants.WEATHER_RESPONSE_DATA, "")
 
-        for (z in weatherList.weather.indices) {
-            Log.i("NAMEEEEEEEE", weatherList.weather[z].main)
+        if (!weatherResponseJsonString.isNullOrEmpty()) {
 
-            tv_main.text = weatherList.weather[z].main
-            tv_main_description.text = weatherList.weather[z].description
-            tv_temp.text =
-                weatherList.main.temp.toString() + getUnit(application.resources.configuration.locales.toString())
-            tv_humidity.text = weatherList.main.humidity.toString() + " per cent"
-            tv_min.text = weatherList.main.temp_min.toString() + " min"
-            tv_max.text = weatherList.main.temp_max.toString() + " max"
-            tv_speed.text = weatherList.wind.speed.toString()
-            tv_name.text = weatherList.name
-            tv_country.text = weatherList.sys.country
-            tv_sunrise_time.text = unixTime(weatherList.sys.sunrise.toLong())
-            tv_sunset_time.text = unixTime(weatherList.sys.sunset.toLong())
 
-            when (weatherList.weather[z].icon) {
-                "01d" -> iv_main.setImageResource(R.drawable.sunny)
-                "02d" -> iv_main.setImageResource(R.drawable.cloud)
-                "03d" -> iv_main.setImageResource(R.drawable.cloud)
-                "04d" -> iv_main.setImageResource(R.drawable.cloud)
-                "04n" -> iv_main.setImageResource(R.drawable.cloud)
-                "10d" -> iv_main.setImageResource(R.drawable.rain)
-                "11d" -> iv_main.setImageResource(R.drawable.storm)
-                "13d" -> iv_main.setImageResource(R.drawable.snowflake)
-                "01n" -> iv_main.setImageResource(R.drawable.cloud)
-                "02n" -> iv_main.setImageResource(R.drawable.cloud)
-                "03n" -> iv_main.setImageResource(R.drawable.cloud)
-                "10n" -> iv_main.setImageResource(R.drawable.cloud)
-                "11n" -> iv_main.setImageResource(R.drawable.rain)
-                "13n" -> iv_main.setImageResource(R.drawable.snowflake)
+            val weatherList =
+                Gson().fromJson(weatherResponseJsonString, WeatherResponse::class.java)
+
+
+
+            for (z in weatherList.weather.indices) {
+                Log.i("NAMEEEEEEEE", weatherList.weather[z].main)
+
+                tv_main.text = weatherList.weather[z].main
+                tv_main_description.text = weatherList.weather[z].description
+                tv_temp.text =
+                    weatherList.main.temp.toString() + getUnit(application.resources.configuration.locales.toString())
+                tv_humidity.text = weatherList.main.humidity.toString() + " per cent"
+                tv_min.text = weatherList.main.temp_min.toString() + " min"
+                tv_max.text = weatherList.main.temp_max.toString() + " max"
+                tv_speed.text = weatherList.wind.speed.toString()
+                tv_name.text = weatherList.name
+                tv_country.text = weatherList.sys.country
+                tv_sunrise_time.text = unixTime(weatherList.sys.sunrise.toLong())
+                tv_sunset_time.text = unixTime(weatherList.sys.sunset.toLong())
+
+                when (weatherList.weather[z].icon) {
+                    "01d" -> iv_main.setImageResource(R.drawable.sunny)
+                    "02d" -> iv_main.setImageResource(R.drawable.cloud)
+                    "03d" -> iv_main.setImageResource(R.drawable.cloud)
+                    "04d" -> iv_main.setImageResource(R.drawable.cloud)
+                    "04n" -> iv_main.setImageResource(R.drawable.cloud)
+                    "10d" -> iv_main.setImageResource(R.drawable.rain)
+                    "11d" -> iv_main.setImageResource(R.drawable.storm)
+                    "13d" -> iv_main.setImageResource(R.drawable.snowflake)
+                    "01n" -> iv_main.setImageResource(R.drawable.cloud)
+                    "02n" -> iv_main.setImageResource(R.drawable.cloud)
+                    "03n" -> iv_main.setImageResource(R.drawable.cloud)
+                    "10n" -> iv_main.setImageResource(R.drawable.cloud)
+                    "11n" -> iv_main.setImageResource(R.drawable.rain)
+                    "13n" -> iv_main.setImageResource(R.drawable.snowflake)
+                }
             }
         }
     }
